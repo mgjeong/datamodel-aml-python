@@ -1,0 +1,6 @@
+[run]
+plugins = Cython.Coverage
+
+[report]
+ignore_errors = True
+
