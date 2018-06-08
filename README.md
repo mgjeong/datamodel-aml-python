@@ -27,4 +27,5 @@ AUTO BUILD :
 	$ ./build_auto.sh --with_dependencies=false --target_arch=x86 [without dependency]
 3. Run samples : 
 	Goto: ~/datamodel-aml-python/samples/
-	$ python samples.python
+	Place a datamodel.aml file in samples folder
+	$ python samples.python []
