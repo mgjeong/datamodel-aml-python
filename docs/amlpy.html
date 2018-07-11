@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module amlpy</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>amlpy</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/arya/edgeMessaging/aml-current/build/amlpy.so">/home/arya/edgeMessaging/aml-current/build/amlpy.so</a></font></td></tr></table>
+    <p><tt>Dcumentation&nbsp;for&nbsp;DATAMODEL_AML_PYTHON<br>
+&nbsp;<br>
+`amlpy`&nbsp;is&nbsp;a&nbsp;cython&nbsp;binding&nbsp;module&nbsp;written&nbsp;over&nbsp;datamodel-aml-cpp(libaml)&nbsp;so&nbsp;as&nbsp;to&nbsp;expose&nbsp;datamodel&nbsp;aml&nbsp;api's&nbsp;to&nbsp;python&nbsp;applications.<br>
+&nbsp;<br>
+Copyright&nbsp;2017&nbsp;Samsung&nbsp;Electronics&nbsp;All&nbsp;Rights&nbsp;Reserved.<br>
+&nbsp;<br>
+Licensed&nbsp;under&nbsp;the&nbsp;Apache&nbsp;License,&nbsp;Version&nbsp;2.0&nbsp;(the&nbsp;"License")</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="__builtin__.html">__builtin__</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial">build.amlpy.pyAMLData
+</font></dt><dt><font face="helvetica, arial">build.amlpy.pyAMLObject
+</font></dt><dt><font face="helvetica, arial">build.amlpy.pyRepresentation
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="pyAMLData">class <strong>pyAMLData</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;contains&nbsp;an&nbsp;internal&nbsp;&nbsp;map&nbsp;of&nbsp;raw&nbsp;data&nbsp;in&nbsp;a&nbsp;key&nbsp;value&nbsp;pair&nbsp;form.<br>
+It&nbsp;contains&nbsp;a&nbsp;pointer&nbsp;to&nbsp;native&nbsp;AMLData&nbsp;instance.<br>
+If&nbsp;no&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;instance&nbsp;passed,&nbsp;new&nbsp;AMLData&nbsp;instance&nbsp;created.&nbsp;&nbsp;<br>
+If&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;passed,&nbsp;it&nbsp;acts&nbsp;as&nbsp;a&nbsp;copy&nbsp;constructor&nbsp;overloading.<br>
+@param&nbsp;<a href="#pyAMLData">pyAMLData</a>:&nbsp;[optional]&nbsp;For&nbsp;copy&nbsp;constructor.<br>
+&nbsp;<br>
+@usage:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amlData&nbsp;=&nbsp;<a href="#pyAMLData">pyAMLData</a>()&nbsp;//&nbsp;Create&nbsp;a&nbsp;new&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;<a href="__builtin__.html#object">object</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amlData&nbsp;=&nbsp;<a href="#pyAMLData">pyAMLData</a>(<a href="#pyAMLData">pyAMLData</a>&nbsp;obj)&nbsp;//&nbsp;Create&nbsp;a&nbsp;new&nbsp;instance&nbsp;and&nbsp;&nbsp;copy&nbsp;data&nbsp;of&nbsp;obj&nbsp;instance.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="pyAMLData-getKeys"><strong>getKeys</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;string&nbsp;list&nbsp;about&nbsp;AMLData's&nbsp;AMLMap&nbsp;keys&nbsp;string&nbsp;array.<br>
+@return&nbsp;vector[string]:&nbsp;vector&nbsp;of&nbsp;string&nbsp;data's&nbsp;keys&nbsp;value&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLData-getValueToAMLData"><strong>getValueToAMLData</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;a&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;insatance&nbsp;which&nbsp;contains&nbsp;pointer&nbsp;to&nbsp;amlData&nbsp;that&nbsp;matches&nbsp;the&nbsp;&nbsp;key&nbsp;in&nbsp;AMLData's&nbsp;AMLMap.<br>
+@param&nbsp;key:&nbsp;pair's&nbsp;which&nbsp;has&nbsp;AMLData,&nbsp;key.<br>
+@return&nbsp;<a href="#pyAMLData">pyAMLData</a>:&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;value&nbsp;which&nbsp;matches&nbsp;the&nbsp;key&nbsp;on&nbsp;AMLMap.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLData-getValueToStr"><strong>getValueToStr</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;the&nbsp;string&nbsp;value&nbsp;which&nbsp;matches&nbsp;the&nbsp;key&nbsp;in&nbsp;AMLData's&nbsp;AMLMap.<br>
+@param&nbsp;key:&nbsp;pair's&nbsp;which&nbsp;has&nbsp;string&nbsp;value,&nbsp;key.<br>
+@return&nbsp;string:&nbsp;String&nbsp;value&nbsp;which&nbsp;matches&nbsp;the&nbsp;key&nbsp;on&nbsp;AMLMap.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLData-getValueToStrArr"><strong>getValueToStrArr</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;the&nbsp;string&nbsp;array&nbsp;value&nbsp;which&nbsp;matches&nbsp;the&nbsp;key&nbsp;in&nbsp;AMLData's&nbsp;AMLMap.<br>
+@param&nbsp;key:&nbsp;pair's&nbsp;which&nbsp;has&nbsp;string&nbsp;value,&nbsp;key.<br>
+@return&nbsp;vector[string]:&nbsp;String&nbsp;array&nbsp;value&nbsp;which&nbsp;matches&nbsp;the&nbsp;key&nbsp;on&nbsp;AMLMap</tt></dd></dl>
+
+<dl><dt><a name="pyAMLData-getValueType"><strong>getValueType</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;string&nbsp;list&nbsp;about&nbsp;AMLData's&nbsp;AMLMap&nbsp;keys&nbsp;string&nbsp;array.<br>
+@param&nbsp;key:&nbsp;string&nbsp;of&nbsp;the&nbsp;AMLData&nbsp;value&nbsp;to&nbsp;check.<br>
+@return&nbsp;amlValueType:&nbsp;value's&nbsp;AMLValueType&nbsp;of&nbsp;pre&nbsp;defined&nbsp;data&nbsp;type.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLData-setValue"><strong>setValue</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;sets&nbsp;key&nbsp;and&nbsp;value&nbsp;pair&nbsp;on&nbsp;AMLData.<br>
+Value&nbsp;types&nbsp;accepted&nbsp;are&nbsp;:&nbsp;strings,&nbsp;vector[strings]&nbsp;or&nbsp;<a href="#pyAMLData">pyAMLData</a>.<br>
+@param&nbsp;key:&nbsp;AMLData&nbsp;Key.<br>
+@param&nbsp;value:&nbsp;AMLData&nbsp;value.&nbsp;[string,&nbsp;vector&nbsp;or&nbsp;<a href="#pyAMLData">pyAMLData</a>]<br>
+@usage&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;=&nbsp;<a href="#pyAMLData">pyAMLData</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.<a href="#pyAMLData-setValue">setValue</a>('key',&nbsp;'20')&nbsp;//&nbsp;type&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.<a href="#pyAMLData-setValue">setValue</a>('key',&nbsp;['10',&nbsp;'20',&nbsp;'30']&nbsp;//&nbsp;type&nbsp;vector[string]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sample&nbsp;=&nbsp;<a href="#pyAMLData">pyAMLData</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.<a href="#pyAMLData-setValue">setValue</a>('key',&nbsp;sample)&nbsp;//&nbsp;type&nbsp;<a href="#pyAMLData">pyAMLData</a></tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#pyAMLData-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="pyAMLObject">class <strong>pyAMLObject</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;contains&nbsp;the&nbsp;AML&nbsp;Data.<br>
+The&nbsp;constructor&nbsp;creates&nbsp;a&nbsp;new&nbsp;AMLObject&nbsp;instance<br>
+and&nbsp;stores&nbsp;it&nbsp;in&nbsp;a&nbsp;pointer&nbsp;to&nbsp;a&nbsp;native&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+@param&nbsp;deviceId:&nbsp;[]Device&nbsp;id&nbsp;that&nbsp;source&nbsp;device&nbsp;of&nbsp;AMLObject.<br>
+@param&nbsp;timeStamp:&nbsp;timestamp&nbsp;value&nbsp;of&nbsp;AMLObject&nbsp;delibered&nbsp;by&nbsp;device.<br>
+@param&nbsp;id:&nbsp;[optional]ID&nbsp;of&nbsp;AML&nbsp;Object<br>
+@param&nbsp;<a href="#pyAMLObject">pyAMLObject</a>&nbsp;[optional]:&nbsp;For&nbsp;copy&nbsp;constructor.&nbsp;<br>
+@Usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.&nbsp;deviceId&nbsp;=&nbsp;"GTC001"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeStamp&nbsp;=&nbsp;"123456789"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amlObj&nbsp;=&nbsp;<a href="#pyAMLObject">pyAMLObject</a>(deviceId,&nbsp;timeStamp)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.&nbsp;ID&nbsp;=&nbsp;"GTC_ROBOT_ID_001"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amlObj&nbsp;=&nbsp;<a href="#pyAMLObject">pyAMLObject</a>(deviceId,&nbsp;timeStamp,&nbsp;ID)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.&nbsp;copyAmlObj&nbsp;=&nbsp;<a href="#pyAMLObject">pyAMLObject</a>(amlObj)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="pyAMLObject-addData"><strong>addData</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;adds&nbsp;AMLData&nbsp;to&nbsp;AMLObject&nbsp;using&nbsp;AMLData&nbsp;key&nbsp;that&nbsp;matches&nbsp;AMLData&nbsp;value.<br>
+@param&nbsp;name:&nbsp;AMLData&nbsp;key.<br>
+@param&nbsp;data:&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLObject-getData"><strong>getData</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;<a href="#pyAMLData">pyAMLData</a>&nbsp;which&nbsp;matched&nbsp;input&nbsp;name&nbsp;string&nbsp;with&nbsp;AMLObject's&nbsp;amlDatas&nbsp;key.<br>
+@param&nbsp;name:&nbsp;String&nbsp;value&nbsp;to&nbsp;use&nbsp;matching&nbsp;with&nbsp;key.<br>
+@return&nbsp;<a href="#pyAMLData">pyAMLData</a>:&nbsp;containing&nbsp;AMLData&nbsp;that&nbsp;have&nbsp;sub&nbsp;key&nbsp;value&nbsp;fair.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLObject-getDataNames"><strong>getDataNames</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;string&nbsp;list&nbsp;about&nbsp;AMLObject's&nbsp;amlDatas&nbsp;keys&nbsp;string&nbsp;array.<br>
+@return&nbsp;vector[string]&nbsp;:&nbsp;vector&nbsp;of&nbsp;string&nbsp;data's&nbsp;keys&nbsp;value&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLObject-getDeviceId"><strong>getDeviceId</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;Device's&nbsp;ID&nbsp;saved&nbsp;on&nbsp;AMLObject.<br>
+@return&nbsp;string:&nbsp;String&nbsp;value&nbsp;of&nbsp;device's&nbsp;Id.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLObject-getId"><strong>getId</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;ID&nbsp;that&nbsp;AMLObject.<br>
+@return&nbsp;string:&nbsp;String&nbsp;value&nbsp;of&nbsp;AMLObject&nbsp;Id.</tt></dd></dl>
+
+<dl><dt><a name="pyAMLObject-getTimeStamp"><strong>getTimeStamp</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;return&nbsp;timestamp&nbsp;that&nbsp;deliveried&nbsp;device.<br>
+@return&nbsp;string:&nbsp;String&nbsp;value&nbsp;of&nbsp;timestamp.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#pyAMLObject-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="pyRepresentation">class <strong>pyRepresentation</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;provides&nbsp;API's&nbsp;for&nbsp;inter-conversion&nbsp;between<br>
+AMLObject,&nbsp;AML(XML)&nbsp;string,&nbsp;AML(protobuf)&nbsp;byte.<br>
+&nbsp;<br>
+The&nbsp;constructor&nbsp;creates&nbsp;a&nbsp;new&nbsp;Representation&nbsp;class&nbsp;instance<br>
+and&nbsp;stores&nbsp;it&nbsp;in&nbsp;a&nbsp;pointer&nbsp;to&nbsp;a&nbsp;native&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+@param&nbsp;amlFilePath:&nbsp;Path&nbsp;of&nbsp;AML&nbsp;that&nbsp;contains&nbsp;a&nbsp;data&nbsp;model&nbsp;information.<br>
+&nbsp;<br>
+@usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.&nbsp;localRep&nbsp;=&nbsp;<a href="#pyRepresentation">pyRepresentation</a>("data_model.aml")<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="pyRepresentation-AmlToData"><strong>AmlToData</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;converts&nbsp;AML(XML)&nbsp;string&nbsp;to&nbsp;AMLObject&nbsp;to&nbsp;match&nbsp;the&nbsp;AML&nbsp;model<br>
+&nbsp;information&nbsp;which&nbsp;is&nbsp;set&nbsp;by&nbsp;constructor.<br>
+@param&nbsp;xmlString:&nbsp;AML(XML)&nbsp;string&nbsp;to&nbsp;be&nbsp;converted.<br>
+@return:&nbsp;<a href="#pyAMLObject">pyAMLObject</a>&nbsp;containg&nbsp;AMLObject&nbsp;instance&nbsp;converted&nbsp;from&nbsp;AML(XML)&nbsp;string.<br>
+&nbsp;<br>
+@note:&nbsp;AMLObject&nbsp;instance&nbsp;will&nbsp;be&nbsp;allocated&nbsp;and&nbsp;returned,&nbsp;so&nbsp;it&nbsp;should&nbsp;be&nbsp;deleted&nbsp;after&nbsp;use.</tt></dd></dl>
+
+<dl><dt><a name="pyRepresentation-DataToAml"><strong>DataToAml</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;converts&nbsp;AMLObject&nbsp;to&nbsp;AML(XML)&nbsp;string&nbsp;to&nbsp;match&nbsp;the&nbsp;AML&nbsp;model<br>
+&nbsp;information&nbsp;which&nbsp;is&nbsp;set&nbsp;by&nbsp;constructor.<br>
+@param&nbsp;amlObj:&nbsp;AMLObject&nbsp;to&nbsp;be&nbsp;converted.<br>
+@return:&nbsp;AML(XML)&nbsp;string&nbsp;converted&nbsp;from&nbsp;amlObject.</tt></dd></dl>
+
+<dl><dt><a name="pyRepresentation-getConfigInfo"><strong>getConfigInfo</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;AMLObject&nbsp;that&nbsp;contains&nbsp;configuration&nbsp;data<br>
+&nbsp;which&nbsp;is&nbsp;present&nbsp;in&nbsp;RoleClassLib.<br>
+@return:&nbsp;<a href="#pyAMLObject">pyAMLObject</a>&nbsp;containing&nbsp;AMLObject&nbsp;that&nbsp;has&nbsp;configuration&nbsp;data.</tt></dd></dl>
+
+<dl><dt><a name="pyRepresentation-getRepresentationId"><strong>getRepresentationId</strong></a>(...)</dt><dd><tt>This&nbsp;function&nbsp;returns&nbsp;AutomationML&nbsp;SystemUnitClassLib's&nbsp;unique&nbsp;ID<br>
+@return&nbsp;:&nbsp;string&nbsp;value&nbsp;of&nbsp;AML&nbsp;SystemUnitClassLIb's&nbsp;ID</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#pyRepresentation-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__test__</strong> = {}</td></tr></table>
+</body></html>
