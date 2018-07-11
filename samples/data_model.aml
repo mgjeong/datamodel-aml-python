@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CAEXFile FileName="" SchemaVersion="2.15" xsi:noNamespaceSchemaLocation="CAEX_Classmodel_V2.15.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<InstanceHierarchy Name="GTC_Robot">
+	</InstanceHierarchy>
+	<RoleClassLib Name="GTC_Robot_Cycle">
+		<Version>1.0.0</Version>
+		<RoleClass Name="Sample">
+			<Attribute Name="cycle" AttributeDataType="xs:string">
+				<Value>25</Value>
+			</Attribute>
+		</RoleClass>
+		<RoleClass Name="Model">
+			<Attribute Name="cycle" AttributeDataType="xs:string">
+				<Value>once</Value>
+			</Attribute>
+		</RoleClass>
+		<RoleClass Name="S/N">
+			<Attribute Name="cycle" AttributeDataType="xs:string">
+				<Value>once</Value>
+			</Attribute>
+		</RoleClass>
+	</RoleClassLib>
+	<SystemUnitClassLib Name="GTC_Robot">
+		<Version>0.0.1</Version>
+		<SystemUnitClass Name="Event">
+			<Description>Event data value</Description>
+			<Attribute Name="device" AttributeDataType="xs:string">
+				<Description>Device Name</Description>
+			</Attribute>
+			<Attribute Name="id" AttributeDataType="xs:string">
+				<Description>database generated identifier</Description>
+			</Attribute>
+			<Attribute Name="timestamp" AttributeDataType="xs:long">
+				<Description>Timestamp of the event</Description>
+			</Attribute>
+		</SystemUnitClass>
+		<SystemUnitClass Name="Sample">
+			<Description>Sample data value</Description>
+			<Attribute Name="info" AttributeDataType="xs:string">
+				<Attribute Name="id" AttributeDataType="xs:string"/>
+				<Attribute Name="axis" AttributeDataType="xs:string">
+					<Attribute Name="x" AttributeDataType="xs:string"/>
+					<Attribute Name="y" AttributeDataType="xs:string"/>
+					<Attribute Name="z" AttributeDataType="xs:string"/>
+				</Attribute>
+			</Attribute>
+			<Attribute Name="appendix" AttributeDataType="xs:string">
+				<RefSemantic CorrespondingAttributePath="OrderedListType"/>
+			</Attribute>
+		</SystemUnitClass>
+		<SystemUnitClass Name="Model">
+			<Description>Model data value</Description>
+			<Attribute Name="ctname" AttributeDataType="xs:string"/>
+			<Attribute Name="con" AttributeDataType="xs:string"/>
+		</SystemUnitClass>
+		<SystemUnitClass Name="S/N">
+			<Description>S/W Version data value</Description>
+			<Attribute Name="ctname" AttributeDataType="xs:string"/>
+			<Attribute Name="con" AttributeDataType="xs:string"/>
+		</SystemUnitClass>
+	</SystemUnitClassLib>
+</CAEXFile>
