@@ -4,7 +4,6 @@ sys.path.append(".")
 from build import amlcy as aml
 
 sampleFilePath = "samples/data_model.aml"
-#sampleFilePath = "../samples/data_model.aml"
 
 class AMLTests(unittest.TestCase):
 
