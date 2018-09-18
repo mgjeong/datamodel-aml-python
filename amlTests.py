@@ -19,22 +19,22 @@ class AMLTests(unittest.TestCase):
 		self.assertNotEqual(localRep, None)
 
 		repID = localRep.getRepresentationId()
-		self.assertEqual(repID, "GTC_Robot_0.0.1")
+		self.assertEqual(repID, "SAMPLE_Robot_0.0.1")
 
 	def test_pyAMLObject_P1(self):
 		localRep = aml.pyRepresentation("samples/data_model.aml")
 		amlObj = localRep.getConfigInfo()
 		self.assertNotEqual(amlObj, None)
 
-		self.assertEqual(amlObj.getDeviceId(), "GTC_Robot_Cycle")
+		self.assertEqual(amlObj.getDeviceId(), "SAMPLE_Robot_Cycle")
 		self.assertEqual(amlObj.getTimeStamp(), "0")
-		self.assertEqual(amlObj.getId(), "GTC_Robot_Cycle_0")
+		self.assertEqual(amlObj.getId(), "SAMPLE_Robot_Cycle_0")
 
-		testNames = ['Model', 'S/N', 'Sample']
+		testNames = ['Model', 'Sample']
 		self.assertEqual(testNames, amlObj.getDataNames())
 
 	def test_pyAMLObject_P2(self):
-		deviceId = "GTC001"
+		deviceId = "SAMPLE001"
 		timeStamp = "123456789"
 
 		amlObj = aml.pyAMLObject(deviceId, timeStamp)
@@ -43,9 +43,9 @@ class AMLTests(unittest.TestCase):
                 self.assertEqual(amlObj.getId(), deviceId + "_" + timeStamp)
 
 	def test_pyAMLObject_p3(self):
-		deviceId = "GTC001"
+		deviceId = "SAMPLE001"
 		timeStamp = "123456789"
-		ID = "GTC_ROBOT_ID_001"
+		ID = "SAMPLE_ROBOT_ID_001"
 
                 amlObj = aml.pyAMLObject(deviceId, timeStamp, ID)
                 self.assertEqual(amlObj.getDeviceId(), deviceId)
@@ -53,7 +53,7 @@ class AMLTests(unittest.TestCase):
                 self.assertEqual(amlObj.getId(), ID)
 
 	def test_pyAMLObject_p4(self):
-		deviceId = "GTC001"
+		deviceId = "SAMPLE001"
                 timeStamp = "123456789"
                 testAmlObj = aml.pyAMLObject(deviceId, timeStamp)
 
@@ -74,7 +74,7 @@ class AMLTests(unittest.TestCase):
 		amlObj = localRep.getConfigInfo()
 		
 		dataNames = amlObj.getDataNames()
-		values = ['once', 'once', '25']
+		values = ['once', '25']
 		index = 0
 		for elem in dataNames:
 			data = amlObj.getData(elem)
@@ -104,11 +104,11 @@ class AMLTests(unittest.TestCase):
 			self.assertRaises(Exception, data.getValueToStr, 10.5)
 
 	def test_pyAMLData_p2(self):
-		amlObject = aml.pyAMLObject("GTC001", "123456789")
+		amlObject = aml.pyAMLObject("SAMPLE001", "123456789")
 
 		data1 = aml.pyAMLData()
 		self.assertNotEqual(data1, None)
-		key1 = "ctname"
+		key1 = "a"
 		value1 = "Model_107.113.97.248"
 		data1.setValue(key1, value1)
 		amlObject.addData("Model", data1)
@@ -131,7 +131,7 @@ class AMLTests(unittest.TestCase):
 		sampleData = aml.pyAMLData()
 		sampleData.setValue("info", infoSample)
 		
-		amlObject = aml.pyAMLObject("GTC001", "123456789")
+		amlObject = aml.pyAMLObject("SAMPLE001", "123456789")
 		amlObject.addData("Sample", sampleData)	
 		
 		#verify
@@ -161,7 +161,7 @@ class AMLTests(unittest.TestCase):
 
 	def test_pyAMLData_p4(self):
 		data1 = aml.pyAMLData()	
-		key1 = "ctname"
+		key1 = "a"
 		value1 = "Model_107.113.97.248"
 		data1.setValue(key1, value1)
 		self.assertEqual(value1, data1.getValueToStr(key1))
@@ -171,10 +171,10 @@ class AMLTests(unittest.TestCase):
 
 	def test_pyAMLData_p5(self):
 		localRep = aml.pyRepresentation("samples/data_model.aml")
-		amlObject = aml.pyAMLObject("GTC001", "123456789")
+		amlObject = aml.pyAMLObject("SAMPLE001", "123456789")
 		model = aml.pyAMLData()
-		model.setValue("ctname", "Model_107.113.97.248")
-		model.setValue("con", "SR-P7-970")
+		model.setValue("a", "Model_107.113.97.248")
+		model.setValue("b", "SR-P7-970")
 
 		axis = aml.pyAMLData()
 		axis.setValue("x", "20")
@@ -222,12 +222,12 @@ class AMLTests(unittest.TestCase):
 	
 	def test_pypyAMLData_N1(self):
 		self.assertRaises(Exception, aml.pyAMLData, 45)
-		self.assertRaises(Exception, aml.pyAMLData, "ctname")
+		self.assertRaises(Exception, aml.pyAMLData, "a")
 		self.assertRaises(Exception, aml.pyAMLData, 45, 50, 12)
 		self.assertRaises(Exception, aml.pyAMLData, "junk1", "junk2")
 
 		data1 = aml.pyAMLData()
-		key1 = "ctname"
+		key1 = "a"
 		self.assertRaises(Exception, data1.setValue)
 		self.assertRaises(Exception, data1.setValue, 45)
 		self.assertRaises(Exception, data1.setValue, key1, 45)

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CAEXFile FileName="" SchemaVersion="2.15" xsi:noNamespaceSchemaLocation="CAEX_Classmodel_V2.15.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<InstanceHierarchy Name="GTC_Robot">
+	<InstanceHierarchy Name="SAMPLE_Robot">
 	</InstanceHierarchy>
-	<RoleClassLib Name="GTC_Robot_Cycle">
+	<RoleClassLib Name="SAMPLE_Robot_Cycle">
 		<Version>1.0.0</Version>
 		<RoleClass Name="Sample">
 			<Attribute Name="cycle" AttributeDataType="xs:string">
@@ -14,13 +14,8 @@
 				<Value>once</Value>
 			</Attribute>
 		</RoleClass>
-		<RoleClass Name="S/N">
-			<Attribute Name="cycle" AttributeDataType="xs:string">
-				<Value>once</Value>
-			</Attribute>
-		</RoleClass>
 	</RoleClassLib>
-	<SystemUnitClassLib Name="GTC_Robot">
+	<SystemUnitClassLib Name="SAMPLE_Robot">
 		<Version>0.0.1</Version>
 		<SystemUnitClass Name="Event">
 			<Description>Event data value</Description>
@@ -50,13 +45,8 @@
 		</SystemUnitClass>
 		<SystemUnitClass Name="Model">
 			<Description>Model data value</Description>
-			<Attribute Name="ctname" AttributeDataType="xs:string"/>
-			<Attribute Name="con" AttributeDataType="xs:string"/>
-		</SystemUnitClass>
-		<SystemUnitClass Name="S/N">
-			<Description>S/W Version data value</Description>
-			<Attribute Name="ctname" AttributeDataType="xs:string"/>
-			<Attribute Name="con" AttributeDataType="xs:string"/>
+			<Attribute Name="a" AttributeDataType="xs:string"/>
+			<Attribute Name="b" AttributeDataType="xs:string"/>
 		</SystemUnitClass>
 	</SystemUnitClassLib>
 </CAEXFile>

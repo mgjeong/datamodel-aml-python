@@ -134,11 +134,11 @@ cdef class pyAMLObject:
         @param id: [optional]ID of AML Object
 	@param pyAMLObject [optional]: For copy constructor. 
 	@Usage:
-		a. deviceId = "GTC001"
+		a. deviceId = "SAMPLE001"
                    timeStamp = "123456789"
                    amlObj = pyAMLObject(deviceId, timeStamp)
 		
-		b. ID = "GTC_ROBOT_ID_001"
+		b. ID = "SAMPLE_ROBOT_ID_001"
 		   amlObj = pyAMLObject(deviceId, timeStamp, ID)
 
 		c. copyAmlObj = pyAMLObject(amlObj) 
