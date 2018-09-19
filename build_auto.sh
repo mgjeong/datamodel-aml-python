@@ -61,6 +61,8 @@ build_x86() {
 
     cd ${AML_ROOT}
 
+    git fetch origin
+    git checkout v1.0_rel
     ./build_32.sh
 
     cd ${PROJECT_ROOT}
@@ -84,7 +86,8 @@ build_x86_64() {
     fi
 
     cd ${AML_ROOT}
-
+	 git fetch origin
+    git checkout v1.0_rel
     ./build.sh
 
     cd ${PROJECT_ROOT}
