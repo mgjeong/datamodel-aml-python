@@ -21,11 +21,22 @@ compile_flags = []
 lib_ext = ".so"
 compiler_directives = {}
 define_macros = []
+log_level='warn'
+DEBUG=False
 
-compiler_directives['profile'] = True
-compiler_directives['linetrace'] = True
-define_macros.append(('CYTHON_TRACE', '1'))
-define_macros.append(('CYTHON_TRACE_NOGIL', '1'))
+if '-Ddebug' in sys.argv:
+	DEBUG=True
+
+if DEBUG:
+	print "Building in DEBUG mode."
+	log_level='debug'
+	compiler_directives['profile'] = True
+	compiler_directives['linetrace'] = True
+	define_macros.append(('CYTHON_TRACE', '1'))
+	define_macros.append(('CYTHON_TRACE_NOGIL', '1'))
+	extra_objs.append("-fprofile-arcs")
+	compile_flags.append("-fprofile-arcs")
+	compile_flags.append("-ftest-coverage")
 
 inc_dirs.append("include/")
 inc_dirs.append(amlcpp + "include")
@@ -35,10 +46,16 @@ if target_os == "linux2":
 	target_arch = platform.machine()
 
 	if target_arch in ['i686', 'x86']:
-		extra_objs.append(amlcpp + "out/linux/x86/release/libaml.a")
+		if DEBUG:
+			extra_objs.append(amlcpp + "out/linux/x86/debug/libaml.a")
+		else:
+			extra_objs.append(amlcpp + "out/linux/x86/release/libaml.a")
 		extra_objs.append("/usr/local/lib/libprotobuf.a")
 	elif target_arch in ['x86_64']:
-		extra_objs.append(amlcpp + "out/linux/x86_64/release/libaml.a")
+		if DEBUG:
+			extra_objs.append(amlcpp + "out/linux/x86_64/debug/libaml.a")
+		else:
+			extra_objs.append(amlcpp + "out/linux/x86_64/release/libaml.a")
 		extra_objs.append("/usr/local/lib/libprotobuf.so")
 	else:
 		print "Error : Target Arch not supported ", target_arch
@@ -66,7 +83,8 @@ ext_modules = [Extension(target, [src],
 setup(
   name = moduleName,
   cmdclass = {'build_ext': build_ext},
-  ext_modules = cythonize(ext_modules, compiler_directives=compiler_directives),
+  ext_modules = cythonize(ext_modules, compiler_directives=compiler_directives,
+		compile_time_env={'LOG_LEVEL':log_level}),
   include_dirs=[numpy.get_include(), "include/"],
 )
 	

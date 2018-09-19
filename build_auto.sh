@@ -61,12 +61,16 @@ build_x86() {
 
     cd ${AML_ROOT}
 
-    ./build_32.sh
+    ./build_32.sh --build_mode=${AML_BUILD_MODE}
 
     cd ${PROJECT_ROOT}
 
     #build cython using setup file.
-    python setup.py build_ext --inplace
+    if [ ${AML_BUILD_MODE} == "debug" ]; then
+        python setup.py build_ext --inplace -Ddebug
+    else
+	python setup.py build_ext --inplace
+    fi
 }
 
 build_x86_64() {
@@ -85,12 +89,16 @@ build_x86_64() {
 
     cd ${AML_ROOT}
 
-    ./build.sh
+    ./build.sh --build_mode=${AML_BUILD_MODE}
 
     cd ${PROJECT_ROOT}
 
     #build cython using setup file.
-    python setup.py build_ext --inplace
+    if [ ${AML_BUILD_MODE} == "debug" ]; then
+	python setup.py build_ext --inplace --debug
+    else
+	python setup.py build_ext --inplace
+    fi
 }
 
 usage() {
