@@ -39,22 +39,18 @@ cdef class pyAMLData:
 	cdef AMLData data
 	def __cinit__(self, *args):
 		if len(args) != 0:
-			log.debug("pyAMLData: IN constructor with arguments")
 			if len(args) ==  1:
-				log.debug("pyAMLData: 1 argument read")
 				tempAmlData = args[0]
 				if isinstance(tempAmlData, pyAMLData):
 					log.debug("pyAMLData: Argument type pyAMLData read")
 					amlData = <pyAMLData>tempAmlData
 					self.data = deref(new AMLData(amlData.data))
 				else:
-					log.debug("pyAMLData: Invalid argument class type")
 					__invalidInputException("Invalid argument type")
 			else:
-				log.debug("pyAMLData: Invalid number of args in constructor")
 				__invalidInputException("Invalid number of arguments")
 		else:
-			log.debug("pyAMLData: In constructor without arguments")
+			log.debug("pyAMLData: Initializing native AMLData object.")
 			self.data = deref(new AMLData())
 	def setValue(self, *args):
 		'''
@@ -71,13 +67,12 @@ cdef class pyAMLData:
 			sample = pyAMLData()
 			a.setValue('key', sample) // type pyAMLData
 		'''
-		log.debug("pyAMLData: setValue called")
+		log.debug("pyAMLData: setValue called for pyAMLData")
 		if len(args) !=  2:
-			log.debug("pyAMLData: invalid number of arguments caught")
 			__invalidInputException("Invalid number of arguments")
 		else:
 			key, value = args
-			log.debug("pyAMLData: key and data value", key, value)
+			log.debug("pyAMLData: key and data values ", key, value)
 			if isinstance(value, str):
 				log.debug("pyAMLData: value is instance of string")
 				self.data.setValue(<string>key, <string>value)
@@ -89,7 +84,6 @@ cdef class pyAMLData:
 				tempAmlData = <pyAMLData>value
 				self.data.setValue(<string>key, tempAmlData.data)
 			else:
-				log.debug("pyAMLData: Invalid type of value caught")
 				__invalidInputException("Invalid argument type")
 	def getValueToStr(self, key):
 		'''
@@ -97,7 +91,6 @@ cdef class pyAMLData:
 		@param key: pair's which has string value, key.
 		@return string: String value which matches the key on AMLMap.
 		'''
-		log.debug("pyAMLData: getValueToStr called")
 		try:
 			log.debug("pyAMLData: calling getValueToStr for key", key)
 			return self.data.getValueToStr(key)
@@ -109,7 +102,6 @@ cdef class pyAMLData:
 		@param key: pair's which has string value, key.
 		@return vector[string]: String array value which matches the key on AMLMap 
 		'''
-		log.debug("pyAMLData: getValueToStrArray called")
 		try:
 			log.debug("pyAMLData: calling getValueToStrArr for key", key)
 			return self.data.getValueToStrArr(key)
@@ -121,12 +113,11 @@ cdef class pyAMLData:
 		@param key: pair's which has AMLData, key.
 		@return pyAMLData: pyAMLData value which matches the key on AMLMap.
 		'''
-		log.debug("pyAMLData: getValueToAMLData called")
 		try:
-			log.debug("pyAMLData: Creating pyAMLData object")
+			log.debug("pyAMLData: Creating an empty pyAMLData object")
 			amlData = pyAMLData()
 			amlData.data = self.data.getValueToAMLData(key)
-			log.debug("pyAMLData: returning pyAMLData object")
+			log.debug("pyAMLData: returning created pyAMLData object")
 			return amlData
 		except Exception as e:
 			__invalidInputException(e)
@@ -168,32 +159,29 @@ cdef class pyAMLObject:
 	cdef AMLObject* obj
 	def __cinit__(self, *args):
 		argsLen = len(args)
-		log.debug("pyAMLObject: Constructor called with args length ", argsLen)
 		if argsLen != 0:
 			if argsLen is 1:
-				log.debug("pyAMLObject: Constructor with 1 argument")
 				tempAmlObj = args[0]
 				if isinstance(tempAmlObj, pyAMLObject):
-					log.debug("pyAMLObject: arg is an instance of pyAMLOject")
+					log.debug("pyAMLObject: Creating pyAMLOject instance with pyAMLObject object")
 					amlObj = <pyAMLObject>tempAmlObj
 					self.obj = new AMLObject(deref(amlObj.obj))
 				else:
-					log.debug("pyAMLObject: Invalid argument type caught")
 					__invalidInputException("Invalid argument type")
 			elif argsLen is 2:
-				log.debug("pyAMLObject: Constructor called with 2 args")
+				log.debug("pyAMLObject: Creating pyAMLOject instance with deviceId and timeStamp ", deviceId, timeStamp)
 				deviceId, timeStamp = args
 				self.obj = new AMLObject(deviceId, timeStamp)
 			elif argsLen is 3:
-				log.debug("pyAMLObject: Constructor called with 3 args")
+				log.debug("pyAMLObject: Constructor pyAMLOject instance with deviceId and timeStamp and objId ", 
+					deviceId, timeStamp, objId)
 				deviceId, timeStamp, objId = args
 				self.obj = new AMLObject(deviceId, timeStamp, objId)
 			else:
-				log.debug("pyAMLObject: Constructor with invalid number of args")
 				__invalidInputException("Invalid number of arguments")
 		else:
 			#empty constructor
-			log.debug("pyAMLObject: Empty constructor envoked here")
+			log.debug("pyAMLObject: Empty constructor initialized")
 			pass
 	def __dealloc__(self):
 		if self.obj is not NULL:
@@ -206,7 +194,7 @@ cdef class pyAMLObject:
 		@param data: pyAMLData value.
 		'''
 		try:
-			log.debug("pyAMLObject: addData being called here")
+			log.debug("pyAMLObject: Adding Data to AMLData ", name)
 			self.obj.addData(name, d.data)
 		except Exception as e:
 			__invalidInputException(e)	
@@ -218,9 +206,8 @@ cdef class pyAMLObject:
 		@return pyAMLData: containing AMLData that have sub key value fair.
 		'''
 		try:
-			log.debug("pyAMLObject: getdata being called here")
 			amlData = pyAMLData()
-			log.debug("pyAMLObject: created pyAMLData object here")
+			log.debug("pyAMLObject: Creating pyAMLData object to pass data value for name: ", name)
 			amlData.data = self.obj.getData(name)
 			return amlData
 		except Exception as e:
@@ -271,7 +258,7 @@ cdef class pyRepresentation:
 	cdef Representation* rep
 	def __cinit__(self, amlFilePath):
 		try:
-			log.debug("pyRepresentation: Constructor called with file ", amlFilePath)
+			log.debug("pyRepresentation: Initializing Representation with file ", amlFilePath)
 			self.rep = new Representation(amlFilePath)
 		except Exception as e:
 			__invalidInputException(e)
@@ -286,7 +273,7 @@ cdef class pyRepresentation:
 		@param amlObj: AMLObject to be converted.
 		@return: AML(XML) string converted from amlObject.'''
 		try:
-			log.debug("pyRepresentation: Converting data to AML data here")
+			log.debug("pyRepresentation: Converting data to AML data")
 			return self.rep.DataToAml(deref(amlObj.obj))
 		except Exception as e:
 			__invalidInputException(e)
@@ -298,9 +285,8 @@ cdef class pyRepresentation:
 		@return: pyAMLObject containg AMLObject instance converted from AML(XML) string.
 		@note: AMLObject instance will be allocated and returned, so it should be deleted after use.'''
 		try:
-			log.debug("pyRepresentation: Converting AML to data here")
 			amlObj = pyAMLObject()
-			log.debug("pyRepresentation: Created a new pyAMLObject here")
+			log.debug("pyRepresentation: Created a new pyAMLObject instance to return data")
 			amlObj.obj = self.rep.AmlToData(xmlString)
 			return amlObj
 		except Exception as e:
@@ -313,7 +299,7 @@ cdef class pyRepresentation:
 		@return: Protobuf byte data(string) converted from amlObject.
 		'''
 		try:
-			log.debug("pyRepresentation: Converting data to byte here")
+			log.debug("pyRepresentation: Converting data to byte")
 			return self.rep.DataToByte(deref(amlObj.obj))
 		except Exception as e:
 			__invalidInputException(e)
@@ -325,9 +311,9 @@ cdef class pyRepresentation:
 		@return: pyAMLObject instance converted from amlObject.
 		'''
 		try:
-			log.debug("pyRepresentation: Converting byte to data here")
+			log.debug("pyRepresentation: Converting byte to data")
 			amlObj = pyAMLObject()
-			log.debug("pyRepresentation: Created a new pyAMLObject here")
+			log.debug("pyRepresentation: Created a new pyAMLObject instance to store data")
 			amlObj.obj = self.rep.ByteToData(byte)
 			return amlObj
 		except Exception as e:
@@ -336,15 +322,13 @@ cdef class pyRepresentation:
 		'''
 		This function returns AutomationML SystemUnitClassLib's unique ID
 		@return : string value of AML SystemUnitClassLIb's ID'''
-		log.debug("pyRepresentation: getRepresentation ID called here")
 		return self.rep.getRepresentationId()
 	def getConfigInfo(self):
 		'''
 		This function returns AMLObject that contains configuration data
 		 which is present in RoleClassLib.
 		@return: pyAMLObject containing AMLObject that has configuration data.'''
-		log.debug("pyRepresentation: getConfig info called here")
 		amlObj = pyAMLObject()
-		log.debug("pyRepresentation: created a new pyAMLObject object here")
+		log.debug("pyRepresentation: created a new pyAMLObject object to store config info.")
 		amlObj.obj = self.rep.getConfigInfo()
 		return amlObj

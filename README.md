@@ -31,6 +31,8 @@ AUTO BUILD :
 	$ ./build_auto.sh --with_dependencies=true --target_arch=x86 [with dependency]
 		OR
 	$ ./build_auto.sh --with_dependencies=false --target_arch=x86 [without dependency]
+		OR
+	$ ./build_auto.sh --with_dependencies=false --target_arch=x86 --build_mode=debug [debug build]
 3. Run samples : 
 
 	Goto: ~/datamodel-aml-python/samples/

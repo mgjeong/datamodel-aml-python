@@ -24,7 +24,7 @@ define_macros = []
 log_level='warn'
 DEBUG=False
 
-if '--debug' in sys.argv:
+if '-Ddebug' in sys.argv:
 	DEBUG=True
 
 if DEBUG:

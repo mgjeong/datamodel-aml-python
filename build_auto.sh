@@ -67,7 +67,7 @@ build_x86() {
 
     #build cython using setup file.
     if [ ${AML_BUILD_MODE} == "debug" ]; then
-        python setup.py build_ext --inplace --debug
+        python setup.py build_ext --inplace -Ddebug
     else
 	python setup.py build_ext --inplace
     fi
