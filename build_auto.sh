@@ -63,12 +63,16 @@ build_x86() {
 
     git fetch origin
     git checkout v1.0_rel
-    ./build_32.sh
+    ./build_32.sh --build_mode=${AML_BUILD_MODE}
 
     cd ${PROJECT_ROOT}
 
     #build cython using setup file.
-    python setup.py build_ext --inplace
+    if [ ${AML_BUILD_MODE} == "debug" ]; then
+        python setup.py build_ext --inplace -Ddebug
+    else
+	python setup.py build_ext --inplace
+    fi
 }
 
 build_x86_64() {
@@ -86,14 +90,18 @@ build_x86_64() {
     fi
 
     cd ${AML_ROOT}
-	 git fetch origin
+    git fetch origin
     git checkout v1.0_rel
-    ./build.sh
+    ./build.sh --build_mode=${AML_BUILD_MODE}
 
     cd ${PROJECT_ROOT}
 
     #build cython using setup file.
-    python setup.py build_ext --inplace
+    if [ ${AML_BUILD_MODE} == "debug" ]; then
+	python setup.py build_ext --inplace --debug
+    else
+	python setup.py build_ext --inplace
+    fi
 }
 
 usage() {

@@ -1,6 +1,9 @@
 import sys, unittest
 sys.path.append("..")
+sys.path.append(".")
 from build import amlcy as aml
+
+sampleFilePath = "samples/data_model.aml"
 
 class AMLTests(unittest.TestCase):
 
@@ -15,14 +18,14 @@ class AMLTests(unittest.TestCase):
 		self.assertRaises(Exception, aml.pyRepresentation, "invalidFile.aml")
 
 	def test_pyRepresentation_P(self):
-		localRep = aml.pyRepresentation("samples/data_model.aml")
+		localRep = aml.pyRepresentation(sampleFilePath)
 		self.assertNotEqual(localRep, None)
 
 		repID = localRep.getRepresentationId()
 		self.assertEqual(repID, "SAMPLE_Robot_0.0.1")
 
 	def test_pyAMLObject_P1(self):
-		localRep = aml.pyRepresentation("samples/data_model.aml")
+		localRep = aml.pyRepresentation(sampleFilePath)
 		amlObj = localRep.getConfigInfo()
 		self.assertNotEqual(amlObj, None)
 
@@ -70,7 +73,7 @@ class AMLTests(unittest.TestCase):
 		self.assertRaises(Exception, aml.pyAMLObject, "id1", "id2", "id3", "id4")
 
 	def test_pyAMLData_p1(self):
-		localRep = aml.pyRepresentation("samples/data_model.aml")
+		localRep = aml.pyRepresentation(sampleFilePath)
 		amlObj = localRep.getConfigInfo()
 		
 		dataNames = amlObj.getDataNames()
@@ -89,7 +92,7 @@ class AMLTests(unittest.TestCase):
 			index += 1
 
 	def test_pyAMLData_N(self):
-		localRep = aml.pyRepresentation("samples/data_model.aml")
+		localRep = aml.pyRepresentation(sampleFilePath)
 		amlObj = localRep.getConfigInfo()
 		dataNames = amlObj.getDataNames()
 		index = 0
@@ -170,8 +173,10 @@ class AMLTests(unittest.TestCase):
 		self.assertEqual(value1, data2.getValueToStr(key1))
 
 	def test_pyAMLData_p5(self):
-		localRep = aml.pyRepresentation("samples/data_model.aml")
+
+		localRep = aml.pyRepresentation(sampleFilePath)
 		amlObject = aml.pyAMLObject("SAMPLE001", "123456789")
+
 		model = aml.pyAMLData()
 		model.setValue("a", "Model_107.113.97.248")
 		model.setValue("b", "SR-P7-970")
