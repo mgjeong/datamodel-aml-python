@@ -39,4 +39,5 @@ AUTO BUILD :
 	Place a datamodel.aml file in samples folder
 	$ python samples.python
 4. Run unittests : 
+	$ cd unittests
 	$ python amlTests.py
