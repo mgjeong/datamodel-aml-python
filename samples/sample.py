@@ -76,14 +76,14 @@ printAMLObject(amlObj)
 
 print "-------------------------------------------------------------"
 
-deviceId = "GTC001"
+deviceId = "SAMPLE001"
 timeStamp = "123456789"
 
 amlObject = aml.pyAMLObject(deviceId, timeStamp)
 
 model = aml.pyAMLData()
-model.setValue("ctname", "Model_107.113.97.248")
-model.setValue("con", "SR-P7-970")
+model.setValue("a", "Model_107.113.97.248")
+model.setValue("b", "SR-P7-970")
 
 axis = aml.pyAMLData()
 axis.setValue("x", "20")

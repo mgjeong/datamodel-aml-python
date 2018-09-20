@@ -61,6 +61,8 @@ build_x86() {
 
     cd ${AML_ROOT}
 
+    git fetch origin
+    git checkout v1.0_rel
     ./build_32.sh --build_mode=${AML_BUILD_MODE}
 
     cd ${PROJECT_ROOT}
@@ -88,7 +90,8 @@ build_x86_64() {
     fi
 
     cd ${AML_ROOT}
-
+    git fetch origin
+    git checkout v1.0_rel
     ./build.sh --build_mode=${AML_BUILD_MODE}
 
     cd ${PROJECT_ROOT}
