@@ -37,7 +37,7 @@ if LOG_LEVEL == 'debug':
 	log.basicConfig(level=log.DEBUG)
 
 def __invalidInputException(cause):
-	log.error("Exception caught : ", cause)
+	log.error("Exception caught : %s" % cause)
 	raise Exception(cause)
 
 cdef class pyAMLData:
