@@ -184,13 +184,13 @@ cdef class pyAMLObject:
 				else:
 					__invalidInputException("Invalid argument type")
 			elif argsLen is 2:
-				log.debug("pyAMLObject: Creating pyAMLOject instance with deviceId and timeStamp ", deviceId, timeStamp)
 				deviceId, timeStamp = args
+				log.debug("pyAMLObject: Creating pyAMLOject instance with deviceId and timeStamp ", deviceId, timeStamp)
 				self.obj = new AMLObject(deviceId, timeStamp)
 			elif argsLen is 3:
+				deviceId, timeStamp, objId = args
 				log.debug("pyAMLObject: Constructor pyAMLOject instance with deviceId and timeStamp and objId ", 
 					deviceId, timeStamp, objId)
-				deviceId, timeStamp, objId = args
 				self.obj = new AMLObject(deviceId, timeStamp, objId)
 			else:
 				__invalidInputException("Invalid number of arguments")
