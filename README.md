@@ -40,3 +40,6 @@ AUTO BUILD :
 	$ python samples.python
 4. Run unittests : 
 	$ python amlTests.py
+
+5. To clean :
+	$ ./build_auto.sh -c

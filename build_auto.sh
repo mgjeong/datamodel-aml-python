@@ -95,19 +95,32 @@ build_x86_64() {
 
     #build cython using setup file.
     if [ ${AML_BUILD_MODE} == "debug" ]; then
-	python setup.py build_ext --inplace --debug
+	python setup.py build_ext --inplace -Ddebug
     else
 	python setup.py build_ext --inplace
     fi
+}
+clean_aml() {
+    echo -e "Cleaning ${BLUE}${PROJECT_ROOT}${NO_COLOUR}"
+    cd ${AML_ROOT}
+    ./build.sh -c
+    cd ${PROJECT_ROOT}
+    echo -e "Cleaning ${BLUE}cython source files${NO_COLOUR}"
+    rm -rf amlcy.cpp
+    echo -e "Cleaning ${BLUE}build/amlcy.so cython library${NO_COLOUR}"    
+    rm -rf build/amlcy.so
+    echo -e "Cleaning ${BLUE}temp build folders${NO_COLOUR}"
+    rm -rf build/temp.linux-i686-2.7
+    echo -e "Finished Cleaning Cython build directories."
 }
 
 usage() {
     echo -e "${BLUE}Usage:${NO_COLOUR} ./build_auto.sh <option>"
     echo -e "${GREEN}Options:${NO_COLOUR}"
     echo "  --target_arch=[x86|x86_64]                                         :  Choose Target Architecture"
-    echo "  --with_dependencies=(default: false)                               :  Build ezmq-python along with dependencies [ezmp-cpp, zmq and protobuf]"
-    echo "  --build_mode=[release|debug](default: release)                     :  Build ezmq library and samples in release or debug mode"
-    echo "  -c                                                                 :  Clean ezmq Repository and its dependencies"
+    echo "  --with_dependencies=(default: false)                               :  Build datamodel-aml-python along with dependencies[datamodel-aml-cpp]."
+    echo "  --build_mode=[release|debug](default: release)                     :  Build datamodel-aml-python library and samples in release or debug mode"
+    echo "  -c                                                                 :  Clean datamodel-aml-python Repository and its dependencies"
     echo "  -h / --help                                                        :  Display help and exit"
     echo -e "${GREEN}Examples: ${NO_COLOUR}"
     echo -e "${BLUE}  build:-${NO_COLOUR}"
@@ -167,7 +180,7 @@ process_cmd_args() {
                 shift 1;
                 ;;
             -c)
-                clean_ezmq
+                clean_aml
                 shift 1; exit 0
                 ;;
             -h)
