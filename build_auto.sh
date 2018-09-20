@@ -34,7 +34,7 @@ AML_CPP_REPO="git@github.sec.samsung.net:RS7-EdgeComputing/datamodel-aml-cpp.git
 
 clone_dataModel(){
     echo -e "Building dependencies now\n"
-    # Check, clone, build python-ezmq-cpp.
+    # Check, clone, build datamodel-aml-cpp.
     cd ${DEP_ROOT}
     
     if [ -d "./datamodel-aml-cpp" ]; then
