@@ -88,13 +88,13 @@ cdef class pyAMLData:
 		else:
 			key, value = args
 			if isinstance(value, str):
-				log.debug("pyAMLData: value is instance of string")
+				log.debug("pyAMLData: value is instance of string key : %s value : %s " %(key, value))
 				self.data.setValue(<string>key, <string>value)
 			elif isinstance(value, list):
-				log.debug("pyAMLData: value is instance of list")
+				log.debug("pyAMLData: value is instance of list. Key is %s " %key)
 				self.data.setValue(<string>key, <vector[string]>value)
 			elif isinstance(value, pyAMLData):
-				log.debug("pyAMLData: value is instance of pyAMLData")
+				log.debug("pyAMLData: value is instance of pyAMLData. Key is %s " %key)
 				tempAmlData = <pyAMLData>value
 				self.data.setValue(<string>key, tempAmlData.data)
 			else:
@@ -106,6 +106,7 @@ cdef class pyAMLData:
 		@return string: String value which matches the key on AMLMap.
 		'''
 		try:
+			log.debug("pyAMLData: getValueToStr called for key : %s" %key)
 			return self.data.getValueToStr(key)
 		except Exception as e:
 			__invalidInputException(e)
@@ -116,6 +117,7 @@ cdef class pyAMLData:
 		@return vector[string]: String array value which matches the key on AMLMap 
 		'''
 		try:
+			log.debug("pyAMLData: getValueToStrArr called for key : %s" %key)
 			return self.data.getValueToStrArr(key)
 		except Exception as e:
 			__invalidInputException(e)
@@ -126,6 +128,7 @@ cdef class pyAMLData:
 		@return pyAMLData: pyAMLData value which matches the key on AMLMap.
 		'''
 		try:
+			log.debug("pyAMLData: getValueToAMLData called for key : %s" %key)
 			log.debug("pyAMLData: Creating an empty pyAMLData object")
 			amlData = pyAMLData()
 			amlData.data = self.data.getValueToAMLData(key)
@@ -148,6 +151,7 @@ cdef class pyAMLData:
 		'''
 		#cdef c = {<int>String : "String", <int>StringArray : "StringArray", <int>}
 		#return c[<int>self.data.getValueType(key)]
+		log.debug("pyAMLData: getValueType called for key : %s" %key)
 		return [<int>self.data.getValueType(key)]
 
 cdef class pyAMLObject:
@@ -181,11 +185,12 @@ cdef class pyAMLObject:
 					__invalidInputException("Invalid argument type")
 			elif argsLen is 2:
 				deviceId, timeStamp = args
-				log.debug("pyAMLObject: Creating pyAMLOject instance with deviceId and timeStamp")
+				log.debug("pyAMLObject: Creating pyAMLOject instance with deviceId %s and timeStamp %s" 
+						%(deviceId, timeStamp))
 				self.obj = new AMLObject(deviceId, timeStamp)
 			elif argsLen is 3:
 				deviceId, timeStamp, objId = args
-				log.debug("pyAMLObject: Constructor pyAMLOject instance with deviceId and timeStamp and objId ")
+				log.debug("pyAMLObject: Constructor pyAMLOject instance with deviceId %s , timeStamp %s and objId %s" %(deviceId, timeStamp, objId))
 				self.obj = new AMLObject(deviceId, timeStamp, objId)
 			else:
 				__invalidInputException("Invalid number of arguments")
@@ -204,7 +209,7 @@ cdef class pyAMLObject:
 		@param data: pyAMLData value.
 		'''
 		try:
-			log.debug("pyAMLObject: Adding Data to AMLData")
+			log.debug("pyAMLObject: Adding Data to AMLData for name : %s" %name)
 			self.obj.addData(name, d.data)
 		except Exception as e:
 			__invalidInputException(e)	
@@ -216,6 +221,7 @@ cdef class pyAMLObject:
 		@return pyAMLData: containing AMLData that have sub key value fair.
 		'''
 		try:
+			log.debug("pyAMLObject: getData called for name %s" %name)
 			amlData = pyAMLData()
 			log.debug("pyAMLObject: Creating pyAMLData object to pass data value")
 			amlData.data = self.obj.getData(name)
@@ -268,7 +274,7 @@ cdef class pyRepresentation:
 	cdef Representation* rep
 	def __cinit__(self, amlFilePath):
 		try:
-			log.debug("pyRepresentation: Initializing Representation")
+			log.debug("pyRepresentation: Initializing Representation for file path %s " %amlFilePath)
 			self.rep = new Representation(amlFilePath)
 		except Exception as e:
 			__invalidInputException(e)
