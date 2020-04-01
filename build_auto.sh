@@ -29,7 +29,7 @@ AML_ROOT=${DEP_ROOT}/datamodel-aml-cpp
 AML_TARGET_ARCH="$(uname -m)"
 AML_WITH_DEP=false
 AML_BUILD_MODE="release"
-AML_CPP_REPO="git@github.sec.samsung.net:RS7-EdgeComputing/datamodel-aml-cpp.git"
+AML_CPP_REPO="https://github.com/edgexfoundry-holding/datamodel-aml-cpp.git"
 
 
 clone_dataModel(){
